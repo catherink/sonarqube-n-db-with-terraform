@@ -13,8 +13,7 @@ services:
                         - SONARQUBE_JDBC_URL=jdbc:mysql://db:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
 
         db:
-                image: mysql
-                net: container:sonarqube
+                image: mysql:7
                 volumes:
                         - db_data:/var/lib/mysql
                 environment:
