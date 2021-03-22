@@ -27,8 +27,8 @@ resource "helm_release" "nginx_ingress" {
 
 resource "helm_release" "sonarqube" {
   name = "sonarqube"
-  repository = "https://kubernetes-charts.storage.googleapis.com/"
-  chart = "stable/sonarqube"
+  repository = "https://oteemo.github.io/charts"
+  chart = "sonarqube"
   
   set {
     name  = "persistence.enabled"
@@ -36,74 +36,70 @@ resource "helm_release" "sonarqube" {
   }
   set {
     name  = "readinessProbe.sonarWebContext"
-    value = "/sonarqube/"
+    value = "/"
   }
   set {
     name  = "livenessProbe.sonarWebContext"
-    value = "/sonarqube/"
-  }
-  set {
-    name  = "mysql.mysqlParams.useSSL"
-    value = "false"
+    value = "/"
   }
   set {
     name  = "replicaCount"
-    value = "3"
+    value = "1"
   }
   set {
     name  = "image.tag"
-    value = "7.8-community"
+    value = "8.5.1-community"
   }
   set {
     name  = "postgresql.enabled"
-    value = "false"
-  }
-  set {
-    name  = "mysql.enabled"
     value = "true"
   }
   set {
     name  = "database.type"
-    value = "mysql"
+    value = "postgresql"
   }
   set {
-    name  = "mysql.mysqlServer"
-    value = "mysql-mysql"
+    name  = "postgresql.postgresqlServer"
+    value = "postgresql"
   }
   set {
-    name  = "mysql.mysqlUser"
-    value = "mysqluser"
+    name  = "postgresql.postgresqlUsername"
+    value = "sonarUser"
   }
   set {
-    name  = "mysql.mysqlPassword"
-    value = "mysqlpass"
+    name  = "postgresql.postgresqlPassword"
+    value = "sonarPass"
   }
   set {
-    name  = "mysql.mysqlDatabase"
-    value = "mysqlsonarqubedb"
+    name  = "postgresql.postgresqlDatabase"
+    value = "sonarDB"
   }
+  set {
+      name  = "postgresql.service.port"
+      value = "5432"
+    }
 }
 
-resource "helm_release" "mysql" {
-  name = "mysql"
-  repository = "https://kubernetes-charts.storage.googleapis.com/"
-  chart = "stable/mysql"
+resource "helm_release" "sonarDB" {
+  name = "postgresql"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart = "postgresql"
 
   set {
-    name  = "mysqlRootPassword"
-    value = "mysqlrootpass"
+    name  = "postgresqlPostgresPassword"
+    value = "postgresRootPass"
   }
 
   set {
-    name  = "mysqlUser"
-    value = "mysqluser"
+    name  = "postgresqlUsername"
+    value = "sonarUser"
   }
   set {
-    name  = "mysqlPassword"
-    value = "mysqlpass"
+    name  = "postgresqlPassword"
+    value = "sonarPass"
   }
   set {
-    name  = "mysqlDatabase"
-    value = "mysqlsonarqubedb"
+    name  = "postgresqlDatabase"
+    value = "sonarDB"
   }
 }
