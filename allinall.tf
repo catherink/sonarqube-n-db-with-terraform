@@ -13,18 +13,6 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "nginx_ingress" {
-  name       = "nginx-ingress-controller"
-
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "nginx-ingress-controller"
-
-  set {
-    name  = "service.type"
-    value = "ClusterIP"
-  }
-}
-
 resource "helm_release" "sonarqube" {
   name = "sonarqube"
   repository = "https://oteemo.github.io/charts"
@@ -102,4 +90,9 @@ resource "helm_release" "sonarDB" {
     name  = "postgresqlDatabase"
     value = "sonarDB"
   }
+  set {
+    name = "service.port"
+    value = "5432"
+  }
 }
+
