@@ -13,3 +13,7 @@ minikube addons enable ingress
 terraform init
 terraform apply -auto-approve
 
+# Configuring ingress
+kubectl apply -f ingress.yaml
+minikubeip=$(minikube ip)
+echo "Sonarqube URL: https://$minikubeip/sonarqube/"
