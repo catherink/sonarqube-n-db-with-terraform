@@ -15,10 +15,10 @@ To run stuff you will need installed:
 
 OR
 
-you can run script risky.sh which maybe will install everything successfully (risky, as it says, and it will work for CentOS, not for Ubuntu, for example).
+you can run script risky.sh which maybe will install everything successfully (risky, as it says, and it will work for CentOS, not for Ubuntu, for example; also, machine's CPU should be 64-bit AMD for script to work).
 
 
-Make sure your machine is not 1Gb RAM (should be at least 4, but I would advice 8).
+Make sure your machine is not 1Gb RAM (should be at least 4).
 
-When everything is ready run justrunthis.sh script (run "chmod 755" for the script before).
+When everything is ready run justrunthis.sh script (run "chmod 755" for the script before, for the previous one also, if you decide to risk).
 
