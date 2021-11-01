@@ -1,3 +1,5 @@
+#This stuff has an error in it
+
 Helm chart for Sonarqube 7.8 is not available anymore, I had to switch for v8.5.1.
 This version of Sonarqube doesn't support MySQL, so I switched to PostgreSQL.
 No need for separate Nginx ingress installation, as Minikube has addon which is enabled by the script.
