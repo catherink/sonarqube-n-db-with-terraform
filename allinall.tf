@@ -15,7 +15,7 @@ provider "helm" {
 
 resource "helm_release" "sonarqube" {
   name = "sonarqube"
-  repository = "https://oteemo.github.io/charts"
+  repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   chart = "sonarqube"
   
   set {
@@ -36,7 +36,7 @@ resource "helm_release" "sonarqube" {
   }
   set {
     name  = "image.tag"
-    value = "8.5.1-community"
+    value = "10.1.0"
   }
   set {
     name  = "postgresql.enabled"

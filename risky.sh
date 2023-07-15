@@ -28,4 +28,3 @@ sudo mv linux-amd64/helm /usr/bin/helm
 # Installing Terraform
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 sudo yum -y install terraform
-
