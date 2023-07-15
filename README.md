@@ -1,12 +1,12 @@
 The task is to deploy Sonarqube application Helm chart to Minikube. It was implemented on Ubuntu 20 machine.
 
-Elasticsearch needs seccomp filter available, to check if it's vailable on your kernel, run:
+Elasticsearch needs seccomp filter available, to check if it's vailable on your kernel, run:<br>
 grep SECCOMP /boot/config-$(uname -r)
 
-If it's there, you'll see:
-CONFIG_HAVE_ARCH_SECCOMP_FILTER=y
-CONFIG_SECCOMP_FILTER=y
-CONFIG_SECCOMP=y
+If it's there, you'll see:<br>
+CONFIG_HAVE_ARCH_SECCOMP_FILTER=y<br>
+CONFIG_SECCOMP_FILTER=y<br>
+CONFIG_SECCOMP=y<br>
 
 Clone the repo and cd into it (you need Git to be installed on your machine, on Ubuntu 20 it's there already)
 
