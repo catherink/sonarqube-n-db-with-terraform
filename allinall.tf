@@ -2,7 +2,7 @@ terraform {
   required_providers {
     helm = {
       source = "hashicorp/helm"
-      version = "2.0.3"
+      version = "2.10.1"
     }
   }
 }
@@ -10,6 +10,34 @@ terraform {
 provider "helm" {
   kubernetes {
     config_path = "~/.kube/config"
+  }
+}
+
+resource "helm_release" "sonarDB" {
+  name = "postgresql"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart = "postgresql"
+
+  set {
+    name  = "postgresqlPostgresPassword"
+    value = "postgresRootPass"
+  }
+
+  set {
+    name  = "postgresqlUsername"
+    value = "sonarUser"
+  }
+  set {
+    name  = "postgresqlPassword"
+    value = "sonarPass"
+  }
+  set {
+    name  = "postgresqlDatabase"
+    value = "sonarDB"
+  }
+  set {
+    name = "service.port"
+    value = "5432"
   }
 }
 
@@ -34,10 +62,10 @@ resource "helm_release" "sonarqube" {
     name  = "replicaCount"
     value = "1"
   }
-  set {
-    name  = "image.tag"
-    value = "10.1.0"
-  }
+#  set {
+#    name  = "image.tag"
+#    value = "10.1.0"
+#  }
   set {
     name  = "securityContext.privileged"
     value = "true"
@@ -60,16 +88,16 @@ resource "helm_release" "sonarqube" {
   }
   set {
     name  = "postgresql.enabled"
-    value = "true"
+    value = "false"
   }
   set {
     name  = "database.type"
     value = "postgresql"
   }
-  set {
-    name  = "postgresql.postgresqlServer"
-    value = "postgresql"
-  }
+#  set {
+#    name  = "postgresql.postgresqlServer"
+#    value = "sonarqubedatabase-postgresql"
+#  }
   set {
     name  = "postgresql.postgresqlUsername"
     value = "sonarUser"
@@ -82,36 +110,4 @@ resource "helm_release" "sonarqube" {
     name  = "postgresql.postgresqlDatabase"
     value = "sonarDB"
   }
-  set {
-      name  = "postgresql.service.port"
-      value = "5432"
-    }
 }
-
-# resource "helm_release" "sonarDB" {
-#   name = "postgresql"
-#   repository = "https://charts.bitnami.com/bitnami"
-#   chart = "postgresql"
-#
-#   set {
-#     name  = "postgresqlPostgresPassword"
-#     value = "postgresRootPass"
-#   }
-#
-#   set {
-#     name  = "postgresqlUsername"
-#     value = "sonarUser"
-#   }
-#   set {
-#     name  = "postgresqlPassword"
-#     value = "sonarPass"
-#   }
-#   set {
-#     name  = "postgresqlDatabase"
-#     value = "sonarDB"
-#   }
-#   set {
-#     name = "service.port"
-#     value = "5432"
-#   }
-# }

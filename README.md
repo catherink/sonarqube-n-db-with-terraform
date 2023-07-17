@@ -1,6 +1,7 @@
-The task is to deploy Sonarqube application Helm chart to Minikube. It was implemented on Ubuntu 20 machine.
+The task is to deploy Sonarqube application Helm chart to Minikube. It was implemented on Ubuntu 20 machine.<br>
+The implementation is valid for 2023.
 
-Elasticsearch needs seccomp filter available, to check if it's vailable on your kernel, run:<br>
+Elasticsearch (which is part of Sonarqube) needs seccomp filter available, to check if it's vailable on your kernel, run:<br>
 grep SECCOMP /boot/config-$(uname -r)
 
 If it's there, you'll see:<br>
