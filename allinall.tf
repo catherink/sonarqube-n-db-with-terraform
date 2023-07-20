@@ -6,6 +6,7 @@ terraform {
     }
   }
 }
+
 provider "helm" {
   kubernetes {
     config_path = "~/.kube/config"
@@ -42,7 +43,7 @@ resource "helm_release" "sonarDB" {
 
 resource "helm_release" "sonarqube" {
   name = "sonarqube"
-  repository = "https://oteemo.github.io/charts"
+  repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   chart = "sonarqube"
   
   set {
@@ -51,15 +52,11 @@ resource "helm_release" "sonarqube" {
   }
   set {
     name  = "readinessProbe.sonarWebContext"
-    value = "/sonarqube/"
-  }
-  set {
-    name = "livenessProbe.sonar.web.context"
-    value  = "/sonarqube"
+    value = "/"
   }
   set {
     name  = "livenessProbe.sonarWebContext"
-    value = "/sonarqube/"
+    value = "/"
   }
   set {
     name  = "replicaCount"
@@ -77,10 +74,10 @@ resource "helm_release" "sonarqube" {
     name  = "securityContext.allowPrivilegeEscalation"
     value = "true"
   }
- # set {
- #   name  = "nginx.enabled"
- #   value = "false"
- # }
+  set {
+    name  = "nginx.enabled"
+    value = "false"
+  }
   set {
     name  = "initSysctl.enabled"
     value = "false"
