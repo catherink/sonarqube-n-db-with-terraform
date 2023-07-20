@@ -2,11 +2,10 @@ terraform {
   required_providers {
     helm = {
       source = "hashicorp/helm"
-      version = "2.10.1"
+      version = "2.0.3"
     }
   }
 }
-
 provider "helm" {
   kubernetes {
     config_path = "~/.kube/config"
@@ -43,7 +42,7 @@ resource "helm_release" "sonarDB" {
 
 resource "helm_release" "sonarqube" {
   name = "sonarqube"
-  repository = "https://sonarsource.github.io/helm-chart-sonarqube"
+  repository = "https://oteemo.github.io/charts"
   chart = "sonarqube"
   
   set {
@@ -52,11 +51,11 @@ resource "helm_release" "sonarqube" {
   }
   set {
     name  = "readinessProbe.sonarWebContext"
-    value = "/"
+    value = "/sonarqube/"
   }
   set {
     name  = "livenessProbe.sonarWebContext"
-    value = "/"
+    value = "/sonarqube/"
   }
   set {
     name  = "replicaCount"
@@ -74,10 +73,10 @@ resource "helm_release" "sonarqube" {
     name  = "securityContext.allowPrivilegeEscalation"
     value = "true"
   }
-  set {
-    name  = "nginx.enabled"
-    value = "false"
-  }
+ # set {
+ #   name  = "nginx.enabled"
+ #   value = "false"
+ # }
   set {
     name  = "initSysctl.enabled"
     value = "false"
