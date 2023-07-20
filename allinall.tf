@@ -2,7 +2,7 @@ terraform {
   required_providers {
     helm = {
       source = "hashicorp/helm"
-      version = "2.0.3"
+      version = "2.10.1"
     }
   }
 }
@@ -52,6 +52,10 @@ resource "helm_release" "sonarqube" {
   set {
     name  = "readinessProbe.sonarWebContext"
     value = "/sonarqube/"
+  }
+  set {
+    name = "livenessProbe.sonar.web.context"
+    value  = "/sonarqube"
   }
   set {
     name  = "livenessProbe.sonarWebContext"

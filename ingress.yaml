@@ -8,7 +8,10 @@ spec:
   rules:
   - http:
       paths:
-      - path: /sonarqube/
+      - pathType: ImplementationSpecific
+        path: /sonarqube/
         backend:
-          serviceName: sonarqube-sonarqube
-          servicePort: 9000
+          service:
+            name: sonarqube-sonarqube
+            port:
+              number: 9000
