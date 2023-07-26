@@ -51,11 +51,7 @@ resource "helm_release" "sonarqube" {
     value = "true"
   }
   set {
-    name  = "readinessProbe.sonarWebContext"
-    value = "/"
-  }
-  set {
-    name  = "livenessProbe.sonarWebContext"
+    name  = "sonarWebContext"
     value = "/"
   }
   set {
@@ -66,25 +62,29 @@ resource "helm_release" "sonarqube" {
 #    name  = "image.tag"
 #    value = "10.1.0"
 #  }
-  set {
-    name  = "securityContext.privileged"
-    value = "true"
-  }
-  set {
-    name  = "securityContext.allowPrivilegeEscalation"
-    value = "true"
-  }
+#  set {
+#    name  = "securityContext.privileged"
+#    value = "true"
+#  }
+#  set {
+#    name  = "securityContext.allowPrivilegeEscalation"
+#    value = "true"
+#  }
   set {
     name  = "nginx.enabled"
     value = "false"
   }
   set {
     name  = "initSysctl.enabled"
-    value = "false"
+    value = "true"
   }
   set {
     name  = "initFs.enabled"
-    value = "false"
+    value = "true"
+  }
+  set {
+    name  = "monitoringPasscode"
+    value = "passcode"
   }
   set {
     name  = "postgresql.enabled"
