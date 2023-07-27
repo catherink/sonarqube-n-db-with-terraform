@@ -50,9 +50,14 @@ resource "helm_release" "sonarqube" {
     name  = "persistence.enabled"
     value = "true"
   }
+# This two are deprecated?
   set {
-    name  = "sonarWebContext"
-    value = "/"
+    name  = "readinessProbe.sonarWebContext"
+    value = "/sonarqube/"
+  }
+  set {
+    name  = "livenessProbe.sonarWebContext"
+    value = "/sonarqube/"
   }
   set {
     name  = "replicaCount"
