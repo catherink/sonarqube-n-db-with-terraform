@@ -104,25 +104,24 @@ resource "helm_release" "sonarqube" {
 #    name  = "database.type"
 #    value = "postgresql"
 #  }
-  set {
-    name = "jdbcOverwrite.enable"
-    value = "true"
-  }
-  set {
-    name  = "jdbcOverwrite.jdbcUrl"
-    value = "jdbc:postgresql://10.100.135.218/sonarDB?socketTimeout=1500"
-  }
-  set {
-    name  = "jdbcOverwrite.jdbcUsername"
-    value = "sonarUser"
-  }
-  set {
-    name  = "jdbcOverwrite.jdbcPassword"
-    value = "sonarPass"
-  }
+#  set {
+#    name = "jdbcOverwrite.enable"
+#    value = "true"
+#  }
+#  set {
+#    name  = "jdbcOverwrite.jdbcUrl"
+#    value = "jdbc:postgresql://10.100.135.218/sonarDB?socketTimeout=1500"
+#  }
+#  set {
+#    name  = "jdbcOverwrite.jdbcUsername"
+#    value = "sonarUser"
+#  }
+#  set {
+#    name  = "jdbcOverwrite.jdbcPassword"
+#    value = "sonarPass"
+#  }
 #  set {
 #    name  = "postgresql.postgresqlDatabase"
 #    value = "sonarDB"
 #  }
-
 }
