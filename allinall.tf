@@ -13,33 +13,33 @@ provider "helm" {
   }
 }
 
-resource "helm_release" "sonarDB" {
-  name = "postgresql"
-  repository = "https://charts.bitnami.com/bitnami"
-  chart = "postgresql"
-
-  set {
-    name  = "global.postgresql.auth.postgresPassword"
-    value = "postgresRootPass"
-  }
-
-  set {
-    name  = "global.postgresql.auth.username"
-    value = "sonarUser"
-  }
-  set {
-    name  = "global.postgresql.auth.password"
-    value = "sonarPass"
-  }
-  set {
-    name  = "global.postgresql.auth.database"
-    value = "sonarDB"
-  }
-  set {
-    name = "service.ports.postgresql"
-    value = "5432"
-  }
-}
+#resource "helm_release" "sonarDB" {
+#  name = "postgresql"
+#  repository = "https://charts.bitnami.com/bitnami"
+#  chart = "postgresql"
+#
+#  set {
+#    name  = "global.postgresql.auth.postgresPassword"
+#    value = "postgresRootPass"
+#  }
+#
+#  set {
+#    name  = "global.postgresql.auth.username"
+#    value = "sonarUser"
+#  }
+#  set {
+#    name  = "global.postgresql.auth.password"
+#    value = "sonarPass"
+#  }
+#  set {
+#    name  = "global.postgresql.auth.database"
+#    value = "sonarDB"
+#  }
+#  set {
+#    name = "service.ports.postgresql"
+#    value = "5432"
+#  }
+#}
 
 resource "helm_release" "sonarqube" {
   name = "sonarqube"
@@ -98,7 +98,7 @@ resource "helm_release" "sonarqube" {
   }
   set {
     name  = "postgresql.enabled"
-    value = "false"
+    value = "true"
   }
 #  set {
 #    name  = "database.type"
