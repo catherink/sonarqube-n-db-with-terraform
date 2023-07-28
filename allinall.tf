@@ -13,33 +13,33 @@ provider "helm" {
   }
 }
 
-#resource "helm_release" "sonarDB" {
-#  name = "postgresql"
-#  repository = "https://charts.bitnami.com/bitnami"
-#  chart = "postgresql"
-#
-#  set {
-#    name  = "global.postgresql.auth.postgresPassword"
-#    value = "postgresRootPass"
-#  }
-#
-#  set {
-#    name  = "global.postgresql.auth.username"
-#    value = "sonarUser"
-#  }
-#  set {
-#    name  = "global.postgresql.auth.password"
-#    value = "sonarPass"
-#  }
-#  set {
-#    name  = "global.postgresql.auth.database"
-#    value = "sonarDB"
-#  }
-#  set {
-#    name = "service.ports.postgresql"
-#    value = "5432"
-#  }
-#}
+resource "helm_release" "sonarDB" {
+  name = "postgresql"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart = "postgresql"
+
+  set {
+    name  = "global.postgresql.auth.postgresPassword"
+    value = "postgresRootPass"
+  }
+
+  set {
+    name  = "global.postgresql.auth.username"
+    value = "sonarUser"
+  }
+  set {
+    name  = "global.postgresql.auth.password"
+    value = "sonarPass"
+  }
+  set {
+    name  = "global.postgresql.auth.database"
+    value = "sonarDB"
+  }
+  set {
+    name = "service.ports.postgresql"
+    value = "5432"
+  }
+}
 
 resource "helm_release" "sonarqube" {
   name = "sonarqube"
@@ -100,28 +100,28 @@ resource "helm_release" "sonarqube" {
     name  = "postgresql.enabled"
     value = "false"
   }
-#  set {
-#    name  = "database.type"
-#    value = "postgresql"
-#  }
-#  set {
-#    name = "jdbcOverwrite.enable"
-#    value = "true"
-#  }
-#  set {
-#    name  = "jdbcOverwrite.jdbcUrl"
-#    value = "jdbc:postgresql://10.100.135.218/sonarDB?socketTimeout=1500"
-#  }
-#  set {
-#    name  = "jdbcOverwrite.jdbcUsername"
-#    value = "sonarUser"
-#  }
-#  set {
-#    name  = "jdbcOverwrite.jdbcPassword"
-#    value = "sonarPass"
-#  }
-#  set {
-#    name  = "postgresql.postgresqlDatabase"
-#    value = "sonarDB"
-#  }
+  set {
+    name  = "database.type"
+    value = "postgresql"
+  }
+  set {
+    name = "jdbcOverwrite.enable"
+    value = "true"
+  }
+  set {
+    name  = "jdbcOverwrite.jdbcUrl"
+    value = "jdbc:postgresql://postgresql.default.svc.cluster.local:5432/sonarDB?socketTimeout=1500"
+  }
+  set {
+    name  = "jdbcOverwrite.jdbcUsername"
+    value = "sonarUser"
+  }
+  set {
+    name  = "jdbcOverwrite.jdbcPassword"
+    value = "sonarPass"
+  }
+  set {
+    name  = "postgresql.postgresqlDatabase"
+    value = "sonarDB"
+  }
 }
