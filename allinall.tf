@@ -69,7 +69,7 @@ resource "helm_release" "sonarqube" {
   }
   set {
     name  = "image.tag"
-    value = "9.9.1"
+    value = "8.5.1"
   }
 # We have these two defined in a Helm chart, no need in override
 #  set {
