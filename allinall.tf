@@ -98,7 +98,7 @@ resource "helm_release" "sonarqube" {
   }
   set {
     name  = "postgresql.enabled"
-    value = "true"
+    value = "false"
   }
 #  set {
 #    name  = "database.type"
