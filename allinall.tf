@@ -19,24 +19,24 @@ resource "helm_release" "sonarDB" {
   chart = "postgresql"
 
   set {
-    name  = "postgresqlPostgresPassword"
+    name  = "global.postgresql.auth.postgresPassword"
     value = "postgresRootPass"
   }
 
   set {
-    name  = "postgresqlUsername"
+    name  = "global.postgresql.auth.username"
     value = "sonarUser"
   }
   set {
-    name  = "postgresqlPassword"
+    name  = "global.postgresql.auth.password"
     value = "sonarPass"
   }
   set {
-    name  = "postgresqlDatabase"
+    name  = "global.postgresql.auth.database"
     value = "sonarDB"
   }
   set {
-    name = "service.port"
+    name = "service.ports.postgresql"
     value = "5432"
   }
 }
@@ -50,13 +50,17 @@ resource "helm_release" "sonarqube" {
     name  = "persistence.enabled"
     value = "true"
   }
-# This two are deprecated?
+# These two are deprecated?
+#  set {
+#    name  = "readinessProbe.sonarWebContext"
+#    value = "/sonarqube/"
+#  }
+#  set {
+#    name  = "livenessProbe.sonarWebContext"
+#    value = "/sonarqube/"
+#  }
   set {
-    name  = "readinessProbe.sonarWebContext"
-    value = "/sonarqube/"
-  }
-  set {
-    name  = "livenessProbe.sonarWebContext"
+    name  = "sonarWebContext"
     value = "/sonarqube/"
   }
   set {
@@ -67,6 +71,7 @@ resource "helm_release" "sonarqube" {
 #    name  = "image.tag"
 #    value = "10.1.0"
 #  }
+# We have these two defined in a Helm chart, no need in override
 #  set {
 #    name  = "securityContext.privileged"
 #    value = "true"
@@ -95,24 +100,29 @@ resource "helm_release" "sonarqube" {
     name  = "postgresql.enabled"
     value = "false"
   }
-  set {
-    name  = "database.type"
-    value = "postgresql"
-  }
 #  set {
-#    name  = "postgresql.postgresqlServer"
-#    value = "sonarqubedatabase-postgresql"
+#    name  = "database.type"
+#    value = "postgresql"
 #  }
   set {
-    name  = "postgresql.postgresqlUsername"
+    name = "jdbcOverwrite.enable"
+    value = "true"
+  }
+  set {
+    name  = "jdbcOverwrite.jdbcUrl"
+    value = "jdbc:postgresql://10.100.135.218/sonarDB?socketTimeout=1500"
+  }
+  set {
+    name  = "jdbcOverwrite.jdbcUsername"
     value = "sonarUser"
   }
   set {
-    name  = "postgresql.postgresqlPassword"
+    name  = "jdbcOverwrite.jdbcPassword"
     value = "sonarPass"
   }
-  set {
-    name  = "postgresql.postgresqlDatabase"
-    value = "sonarDB"
-  }
+#  set {
+#    name  = "postgresql.postgresqlDatabase"
+#    value = "sonarDB"
+#  }
+
 }
