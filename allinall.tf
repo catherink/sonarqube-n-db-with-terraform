@@ -67,10 +67,10 @@ resource "helm_release" "sonarqube" {
     name  = "replicaCount"
     value = "1"
   }
-#  set {
-#    name  = "image.tag"
-#    value = "10.1.0"
-#  }
+  set {
+    name  = "image.tag"
+    value = "9.9.1"
+  }
 # We have these two defined in a Helm chart, no need in override
 #  set {
 #    name  = "securityContext.privileged"
