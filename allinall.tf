@@ -17,6 +17,11 @@ resource "helm_release" "sonarDB" {
   name = "postgresql"
   repository = "https://charts.bitnami.com/bitnami"
   chart = "postgresql"
+  namespace = "sonar"
+
+  set {
+    name  = "primary.containerSecurityContext.allowPrivilegeEscalation"
+    value = "true"
 
   set {
     name  = "global.postgresql.auth.postgresPassword"
@@ -35,16 +40,17 @@ resource "helm_release" "sonarDB" {
     name  = "global.postgresql.auth.database"
     value = "sonarDB"
   }
-  set {
-    name = "service.ports.postgresql"
-    value = "5432"
-  }
+#  set {
+#    name = "service.ports.postgresql"
+#    value = "5432"
+#  }
 }
 
 resource "helm_release" "sonarqube" {
   name = "sonarqube"
   repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   chart = "sonarqube"
+  namespace = "sonar"
   
   set {
     name  = "persistence.enabled"
@@ -71,7 +77,7 @@ resource "helm_release" "sonarqube" {
 #    name  = "image.tag"
 #    value = "8.5.1"
 #  }
-# Something here is deprecated
+# 
 #  set {
 #    name  = "securityContext.privileged"
 #    value = "true"
@@ -110,7 +116,7 @@ resource "helm_release" "sonarqube" {
   }
   set {
     name  = "jdbcOverwrite.jdbcUrl"
-    value = "jdbc:postgresql://postgresql.default.svc.cluster.local:5432/sonarDB?socketTimeout=1500"
+    value = "jdbc:postgresql://postgresql.default.svc.cluster.local:5432/sonarDB"
   }
   set {
     name  = "jdbcOverwrite.jdbcUsername"
