@@ -17,7 +17,6 @@ resource "helm_release" "sonarDB" {
   name = "postgresql"
   repository = "https://charts.bitnami.com/bitnami"
   chart = "postgresql"
-  namespace = "sonar"
 
   set {
     name  = "primary.containerSecurityContext.allowPrivilegeEscalation"
@@ -55,7 +54,6 @@ resource "helm_release" "sonarqube" {
   name = "sonarqube"
   repository = "https://sonarsource.github.io/helm-chart-sonarqube"
   chart = "sonarqube"
-  namespace = "sonar"
   
   set {
     name  = "persistence.enabled"
