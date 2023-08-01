@@ -3,7 +3,7 @@
 set -e
 
 # Installing Docker engine
-sudo apt update && sudo apt install -y ca-certificates curl gnupg
+sudo apt update > /dev/null && sudo apt install -y ca-certificates curl gnupg > dev/null
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
@@ -13,7 +13,7 @@ echo \
   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin > /dev/null
+sudo apt update > /dev/null && sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin > /dev/null
 
 sudo usermod -aG docker $USER && newgrp docker
 
@@ -33,9 +33,9 @@ minikube kubectl -- get po -A > /dev/null
 # Installing Helm
 wget https://get.helm.sh/helm-v3.12.2-linux-amd64.tar.gz > /dev/null
 tar zxvf helm-v3.12.2-linux-amd64.tar.gz > /dev/null
-sudo mv linux-amd64/helm /usr/bin/helm
+sudo mv linux-amd64/helm /usr/bin/helm > /dev/null
 
 # Installing Terraform
 wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list > /dev/null
-sudo apt update && sudo apt install -y terraform > /dev/null
+sudo apt update > /dev/null && sudo apt install -y terraform > /dev/null
