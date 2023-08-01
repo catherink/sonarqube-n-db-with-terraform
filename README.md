@@ -1,5 +1,6 @@
 The task is to deploy Sonarqube application Helm chart to Minikube. It was implemented on Ubuntu 20 machine.<br>
-The implementation is valid for 2023.
+The implementation is valid in 2023.<br>
+Separate Helm chart is used for PostgreSQL database (there is one included in Sonarqube chart if it works for you).
 
 Elasticsearch (which is part of Sonarqube) needs seccomp filter available, to check if it's vailable on your kernel, run:<br>
 grep SECCOMP /boot/config-$(uname -r)
@@ -29,3 +30,4 @@ you can run script risky.sh which maybe will install everything successfully
 Make sure your machine is not 1Gb RAM (should be at least 4Gb; they say 8Gb is even better, because Sonarqube chart memory limit shouldn't be under 4Gb).
 
 When everything is ready run justrunthis.sh script (run "chmod 755" for the script before, for the previous one also, if you decide to risk).
+If you won't run risky.sh, read comments in justrunthis.sh carefully before running it.

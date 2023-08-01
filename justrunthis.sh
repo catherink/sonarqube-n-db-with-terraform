@@ -4,7 +4,7 @@
 # sudo sysctl -w vm.max_map_count=262144
 
 # UNCOMMENT MINIKUBE COMMANDS IN THIS SECTION IF YOU WON'T RUN risky.sh
-# THIS COULD BE A CASE IF YOU HAVE ALL THE TOOLS MENTIONED IN README ALREADY INSTALLED
+# THIS COULD BE A CASE IF YOU HAVE ALL THE TOOLS MENTIONED IN README.md ALREADY INSTALLED
 # Setting docker as default driver for minikube
 # minikube config set driver docker
 # Starting minikube and enabling Nginx ingress
