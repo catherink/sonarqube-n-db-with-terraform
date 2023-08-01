@@ -27,3 +27,8 @@ You can check RunThisManuallyCommandByCommand.sh to prepare the cluster (this wi
 Make sure your machine is not 1Gb RAM (should be at least 4Gb; they say 8Gb is even better, because Sonarqube chart memory limit shouldn't be under 4Gb).
 
 When everything is ready run justrunthis.sh script (run "chmod 755" for the script before).
+
+If script in the end says that Kubernetes cluster is unreachable, give it few minutes, it will be.
+Sad part, if this happens, you will need to run ingress apply command manually, it won't be executed in script.
+
+Sonarqube pod likes attention, and it can be running, but not ready in the beginning. Give it some minutes also, it will be operational.
