@@ -22,7 +22,7 @@ resource "helm_release" "sonarDB" {
   set {
     name  = "primary.containerSecurityContext.allowPrivilegeEscalation"
     value = "true"
-
+  }
   set {
     name  = "auth.enablePostgresUser"
     value = "true"
