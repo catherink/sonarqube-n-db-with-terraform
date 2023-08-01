@@ -14,7 +14,7 @@ If you install kubectl with Minikube, unless you create an alias, you will need 
 
 Clone the repo and cd into it (you need Git to be installed on your machine, on Ubuntu 20 it's there already)
 
-To run stuff you will need installed:
+To run stuff you will need to prepare the cluster and have installed:
 
 1. Docker engine (you can use VirtualBox instead, but depending on how you run your machine, you can have issues with starting Minikube on VirtualBox)
 2. Minikube
@@ -22,12 +22,8 @@ To run stuff you will need installed:
 5. Helm
 6. Terraform
 
-OR
-
-you can run script risky.sh which maybe will install everything successfully
-(risky, as it says, and it will work for Debian and Ubuntu machines (OS versions since 2014) with AMD64 processor architecture).
+You can check RunThisManuallyCommandByCommand.sh to prepare the cluster (this will work for Debian and Ubuntu machines (OS versions since 2014) with AMD64 processor architecture).
 
 Make sure your machine is not 1Gb RAM (should be at least 4Gb; they say 8Gb is even better, because Sonarqube chart memory limit shouldn't be under 4Gb).
 
-When everything is ready run justrunthis.sh script (run "chmod 755" for the script before, for the previous one also, if you decide to risk).
-If you won't run risky.sh, read comments in justrunthis.sh carefully before running it.
+When everything is ready run justrunthis.sh script (run "chmod 755" for the script before).
