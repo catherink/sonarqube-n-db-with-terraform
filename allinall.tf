@@ -80,7 +80,6 @@ resource "helm_release" "sonarqube" {
 #    name  = "image.tag"
 #    value = "8.5.1"
 #  }
-# 
 #  set {
 #    name  = "securityContext.privileged"
 #    value = "true"
@@ -109,10 +108,10 @@ resource "helm_release" "sonarqube" {
     name  = "postgresql.enabled"
     value = "false"
   }
-  set {
-    name  = "database.type"
-    value = "postgresql"
-  }
+#  set {
+#    name  = "database.type"
+#    value = "postgresql"
+#  }
   set {
     name = "jdbcOverwrite.enable"
     value = "true"
