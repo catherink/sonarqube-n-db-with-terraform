@@ -24,6 +24,11 @@ resource "helm_release" "sonarDB" {
     value = "true"
 
   set {
+    name  = "auth.enablePostgresUser"
+    value = "true"
+  }
+
+  set {
     name  = "global.postgresql.auth.postgresPassword"
     value = "postgresRootPass"
   }
